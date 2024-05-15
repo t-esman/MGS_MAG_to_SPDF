@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Purpose: USE THIS ONE
+;Purpose:
 ;Create .sav files out of MGS mag .sts files
 ;including low time and high time resolution data.
 ;
@@ -26,7 +26,10 @@
 ; 12/1/2022: Fix for when only some files exist (e.g., no high time resolution available)
 ; 11/9/2022
 ; 11/3/2022
-;
+; 
+; Note: The 04/12/2023 version of this code was used to 
+; create data files in the process of archiving MGS MAG
+; data on the SPDF
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 pro mgs_to_sav, timeFrame = timeFrame
