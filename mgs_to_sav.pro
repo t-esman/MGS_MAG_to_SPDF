@@ -23,7 +23,8 @@
 ;
 ; Last edited: 04/12/2023
 ; 04/12/2023: Switch to Mac file format
-; 12/1/2022: Fix for when only some files exist (e.g., no high time resolution available)
+; 12/1/2022: Fix for when only some files exist 
+;            (e.g., no high time resolution available)
 ; 11/9/2022
 ; 11/3/2022
 ; 
@@ -36,16 +37,17 @@ pro mgs_to_sav, timeFrame = timeFrame
 
   if ~keyword_set(timeFrame) then begin
     timeFrame=''
-    ;read, timeFrame, $
-    ;  prompt='Please choose pre_map (1997-1999) or mapping (1999-2006): '
-
+   
+    ; This code is designed to do only one phase at a time: 
+    ;pre-map or mapping phase. The user must change these 
+    ;variables as necessary. 
     pre_map = 'n' ;Compile pre-mapping MGS files (1997-1999)
     mapping = 'y' ;Compile mapping MGS files (1999-2006)
   endif
 
 
-  init_dir = '/Users/tesman/Desktop/TESMAN/MGS/Data';'D:\TESMAN\MGS\Data'
-  end_dir = '/Users/tesman/Desktop/TESMAN/NPP_WORK/MGS/COMPILATION_FILES';'D:\TESMAN\NPP_WORK\MGS\COMPILATION_FILES'
+  init_dir = '/Users/username/folder/MGS/Data' ;Location of saved data files
+  end_dir = '/Users/username/folder/MGS/COMPILATION_FILES' ;Where to save the new files
 
   if pre_map eq 'y' then begin
     dirdet='/detail_pl_ss_premap/'
@@ -65,7 +67,7 @@ pro mgs_to_sav, timeFrame = timeFrame
   endelse
 
 
-
+  
   for year = 106,107 do begin
     for day =30,356 do begin
 
@@ -97,12 +99,9 @@ pro mgs_to_sav, timeFrame = timeFrame
       if search_lowpc eq '' then print, 'Low resolution PC file does not exist.'
 
       if search_lowss eq '' then $
-        print, 'Low resolution SS file does not exist.' ;If this is the case,
-      ;this code will break.
+        print, 'Low resolution SS file does not exist.'
 
       ;Check if the compilation file already exists.
-      ;If errors are found in the compilation files and
-      ;this needs to be rerun, comment this section out.
       if mapping eq 'y' then $
         check_end_file = end_dir + '/' + fnstem +'.sav'
       if pre_map eq 'y' then $
@@ -112,9 +111,7 @@ pro mgs_to_sav, timeFrame = timeFrame
         print, 'Compilation file already exists. Continuing to next day.'
         continue
       endif
-
-
-
+      
       ; Load the high time resolution payload and sun-state data
       if search_high ne '' then $
         tme_pl_ss_sts_dataload,fnh,TIME_DOY_HIGH,TIME_HOUR_HIGH,TIME_MIN_HIGH,$
