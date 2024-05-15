@@ -3,6 +3,11 @@
 ;Create .sav files out of MGS mag .sts files
 ;including low time and high time resolution data.
 ;
+;Code Dependencies:
+;tme_pc_low_sts_dataload
+;tme_ss_low_sts_dataload
+;tme_pl_ss_sts_dataload
+;
 ;Processes are performed.
 ;
 ;These include:
@@ -18,10 +23,11 @@
 ;3) Interpolating the low time resolution altitude
 ;to the high time resolution data.
 ;
-;Author:Teresa Esman
+; Author:Teresa Esman
 ; teresa.esman@nasa.gov
 ;
-; Last edited: 04/12/2023
+; Last edited: 05/15/2024
+; 05/15/2024: Documentation changes for clarity
 ; 04/12/2023: Switch to Mac file format
 ; 12/1/2022: Fix for when only some files exist 
 ;            (e.g., no high time resolution available)
@@ -31,6 +37,8 @@
 ; Note: The 04/12/2023 version of this code was used to 
 ; create data files in the process of archiving MGS MAG
 ; data on the SPDF
+;
+;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 pro mgs_to_sav, timeFrame = timeFrame
@@ -44,7 +52,6 @@ pro mgs_to_sav, timeFrame = timeFrame
     pre_map = 'n' ;Compile pre-mapping MGS files (1997-1999)
     mapping = 'y' ;Compile mapping MGS files (1999-2006)
   endif
-
 
   init_dir = '/Users/username/folder/MGS/Data' ;Location of saved data files
   end_dir = '/Users/username/folder/MGS/COMPILATION_FILES' ;Where to save the new files
@@ -63,10 +70,7 @@ pro mgs_to_sav, timeFrame = timeFrame
       print, 'Please choose pre mapping or mapping data.'
       stop
     endelse
-
   endelse
-
-
   
   for year = 106,107 do begin
     for day =30,356 do begin
@@ -145,9 +149,7 @@ pro mgs_to_sav, timeFrame = timeFrame
         OUTBOARD_BD_PAYLOAD_RANGE_LOW_PC,SA_NEGY_CURRENT_LOW_PC,SA_POSY_CURRENT_LOW_PC,SA_OUTPUT_CURRENT_LOW_PC,$
         cmdLine_LOW_PC
 
-
       ;Switch from year, day, hour, minute, second, msec to unix time
-      ; THIS WILL BREAK IF LOW SS FILE DOES NOT EXIST. SO FAR NOT ENCOUNTERED.
       unix_time_low = make_array(n_elements(TIME_YEAR_LOW),/DOUBLE)
       for time_count_low = 0, n_elements(TIME_YEAR_LOW)-1 do begin
         unix_time_low(time_count_low) = doyday_to_unix(TIME_YEAR_LOW(time_count_low), floor(DECIMAL_DAY_LOW(time_count_low)), $
