@@ -4,6 +4,7 @@
 ;Formatting
 ;No data changing processes are performed
 ;
+;Code Dependency: stsread.pro
 ;
 ;Author:
 ; teresa.Esman@nasa.gov
