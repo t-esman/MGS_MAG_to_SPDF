@@ -1,12 +1,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
 ;Load .sts detail file for MGS MAG pl_ss
-;No processes are performed on the data - just what is in the .sts file
+;Formatting
+;No data changing processes are performed
+;
 ;
 ;Author:
 ; teresa.Esman@nasa.gov
 ;
-; Last edited: 11/3/2022
+; Last edited: 05/15/2024
+; 11/3/2022
 ; 7/18/2014
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
