@@ -1,12 +1,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
 ;Load .sts detail file for MGS MAG low time resolution pc
-;No processes are performed on the data - just what is in the .sts file
+;No changes to the data are performed
+;
+;Code Dependency: stsread.pro
 ;
 ;Author:
 ; teresa.Esman@nasa.gov
 ;
-; Last edited: 11/9/2022
+; Last edited: 05/15/2024
+; 11/9/2022
 ; 11/3/2022
 ; 7/18/2014
 ;
