@@ -4,9 +4,10 @@
 ;including low time and high time resolution data.
 ;
 ;Code Dependencies:
-;tme_pc_low_sts_dataload
-;tme_ss_low_sts_dataload
-;tme_pl_ss_sts_dataload
+;tme_pc_low_sts_dataload.pro
+;tme_ss_low_sts_dataload.pro
+;tme_pl_ss_sts_dataload.pro
+;stsread.pro
 ;
 ;Processes are performed.
 ;
