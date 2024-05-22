@@ -11,6 +11,11 @@ There is no planetocentric low resolution data for m99d080.
 m03d308 (11/04/2003) has non-monotonically increasing data
 and has to be re-made (for PDS). 
 
+Dependencies: 
+MGS must be registered with Pysat. This can be done with
+mgs_mag_module.py and mgs_mag_meta.py along with the 
+Pysat package. 
+
 """
 
 import pysat
