@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-I don't think this is needed? Unconfirmed
+I don't think this is needed? Unconfirmed... but 99%
 Created on Wed Feb 22 13:57:34 2023
 
 @author: tesman
 """
 import pysat
-from pysat.utils.registry import register
 import ops_mgs
-register.register_by_module(ops_mgs.instruments)
-mgs = pysat.Instrument(platform= 'mgs',name = 'mag',directory_format = '/Users/tesman/Desktop/TESMAN/NPP_WORK/MGS/COMPILATION_FILES_PREMAP/', file_format = 'm{year:2d}d{doy:003d}.sav')
+
+mgs = pysat.Instrument(platform= 'mgs',name = 'mag',directory_format = '/Users/user/folder/MGS/COMPILATION_FILES_PREMAP/', file_format = 'm{year:2d}d{doy:003d}.sav')
 file = 'm98d223.sav'
 mgs.load(fname = file)
 mgs.data
