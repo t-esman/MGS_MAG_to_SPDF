@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 """Coverting MGS MAG .sav files for Pysat and SPDF use.
+author: Teresa (Tracy) Esman
+teresa.esman@nasa.gov
+NASA Postdoctoral Fellow at NASA GSFC
+
 Properties
 ----------
 platform
