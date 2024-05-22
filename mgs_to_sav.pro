@@ -1,45 +1,48 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
-;Create .sav files out of MGS mag .sts files
-;including low time and high time resolution data.
+; Create .sav files from Mars Global Surveyor magnetometer
+; data from PDS .sts files
+;DOIs:
 ;
 ;Code Dependencies:
-;tme_pc_low_sts_dataload.pro
-;tme_ss_low_sts_dataload.pro
-;tme_pl_ss_sts_dataload.pro
-;stsread.pro
+; tme_pc_low_sts_dataload.pro
+; tme_ss_low_sts_dataload.pro
+; tme_pl_ss_sts_dataload.pro
+; stsread.pro
 ;
-;Processes are performed.
+;Processes are performed. These include:
+; 1) Translating 7 time variables (decimal day, doy, hour,
+; min/sec/msec) to Unix time
 ;
-;These include:
-;1) Translating Doy/hour/min/sec/msec to unix time
-;2) Calculating the altitude based on low time resolution
-;spacecraft position data and the radius of Mars.
-; Please note that the radius is a reasonable chosen value, 
+; 2) Calculating the altitude based on low time resolution
+; spacecraft position data and the radius of Mars.
+; Please note that the radius is a reasonable value, 
 ; but may not be accurate at the exact data acquisition location. 
 ; Equatorial radius (km): 3396.2
 ; Polar radius (km): 3376.2
 ; Volumetric mean radius (km): 3389.5
 ; Chosen value (km): 3389.5
-;3) Interpolating the low time resolution altitude
-;to the high time resolution data.
+; Therefore, the approximate accuracy is plus or minus 15 km.
 ;
-; Author:Teresa Esman
+; 3) Interpolating the low time resolution altitude
+; to the high time resolution data.
+;
+; Author:Teresa (Tracy) Esman
 ; teresa.esman@nasa.gov
 ; NASA Postdoctoral Fellow at NASA GSFC
 ;
-; Last edited: 05/15/2024
+; Last edited: 05/22/2024
 ; 05/15/2024: Documentation changes for clarity
 ; 04/12/2023: Switch to Mac file format
 ; 12/1/2022: Fix for when only some files exist 
 ;            (e.g., no high time resolution available)
 ; 11/9/2022
-; 11/3/2022
+; 11/3/2022: Created based on code written by T. Esman
+;             in 2014.
 ; 
 ; Note: The 04/12/2023 version of this code was used to 
 ; create data files in the process of archiving MGS MAG
 ; data on the SPDF
-;
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -49,33 +52,35 @@ pro mgs_to_sav, timeFrame = timeFrame
     timeFrame=''
    
     ; This code is designed to do only one phase at a time: 
-    ;pre-map or mapping phase. The user must change these 
-    ;variables as necessary. 
-    pre_map = 'n' ;Compile pre-mapping MGS files (1997-1999)
-    mapping = 'y' ;Compile mapping MGS files (1999-2006)
+    ;pre-map or mapping phase. 
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ; The user must change these variables as necessary.
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    pre_map = 'n' ; Compile pre-mapping MGS files (1997-1999)
+    mapping = 'y' ; Compile mapping MGS files (1999-2006)
   endif
 
-  init_dir = '/Users/username/folder/MGS/Data' ;Location of saved data files
-  end_dir = '/Users/username/folder/MGS/COMPILATION_FILES' ;Where to save the new files
+  init_dir = '/Users/username/folder/MGS/Data' ; Location of saved data files
+  end_dir = '/Users/username/folder/MGS/COMPILATION_FILES' ; Where to save the new files
 
   if pre_map eq 'y' then begin
-    dirdet='/detail_pl_ss_premap/'
+    dirdet='/detail_pl_ss_premap/' ; Locations of the pre-mapping data.
     dirlow_pc='/low_pc_premap/MAG_PCENTRIC/'
     dirlow_ss='/low_ss_premap/MAG_SUNSTATE/'
-    end_dir = '/Users/tesman/Desktop/TESMAN/NPP_WORK/MGS/COMPILATION_FILES_PREMAP/'
+    end_dir = '/Users/username/folder/MGS/COMPILATION_FILES_PREMAP/'
   endif else begin
-    if mapping eq 'y' then begin
+    if mapping eq 'y' then begin ; Locations of the mapping data.
       dirdet='/detail_pl_ss_MAP/'
       dirlow_pc ='/low_pc_MAP/'
       dirlow_ss = '/low_ss_MAP/'
     endif else begin
-      print, 'Please choose pre mapping or mapping data.'
+      print, 'Please choose pre-mapping or mapping data.'
       stop
     endelse
   endelse
   
-  for year = 106,107 do begin
-    for day =30,356 do begin
+  for year = 97,107 do begin
+    for day = 1,366 do begin
 
       yy = strtrim(year,1)
       if year ge 100 then yy=strMid(strtrim(year,2),1,2)
@@ -84,13 +89,12 @@ pro mgs_to_sav, timeFrame = timeFrame
       if day lt 100 and day gt 9 then ddd = '0'+strtrim(day,1)
       if day ge 100 then ddd = strtrim(day,1)
 
-
       fnstem='m'+yy+'d'+ddd
       fnstem_num=yy+ddd
 
-      fnh=init_dir+dirdet+fnstem+'_detail.sts' ; high time resolution
-      fnlss=init_dir+dirlow_ss+fnstem_num+'.sts'
-      fnlpc=init_dir+dirlow_pc+fnstem_num+'.sts'
+      fnh=init_dir+dirdet+fnstem+'_detail.sts' ; High time resolution filename
+      fnlss=init_dir+dirlow_ss+fnstem_num+'.sts' ; Low time resolution filename
+      fnlpc=init_dir+dirlow_pc+fnstem_num+'.sts' ; Low time resolution filename
       print,fnh
 
       ;Make sure that the file exists
@@ -151,7 +155,7 @@ pro mgs_to_sav, timeFrame = timeFrame
         OUTBOARD_BD_PAYLOAD_RANGE_LOW_PC,SA_NEGY_CURRENT_LOW_PC,SA_POSY_CURRENT_LOW_PC,SA_OUTPUT_CURRENT_LOW_PC,$
         cmdLine_LOW_PC
 
-      ;Switch from year, day, hour, minute, second, msec to unix time
+      ;Switch from decimal day, year, day of year, hour, minute, second, msec to Unix time
       unix_time_low = make_array(n_elements(TIME_YEAR_LOW),/DOUBLE)
       for time_count_low = 0, n_elements(TIME_YEAR_LOW)-1 do begin
         unix_time_low(time_count_low) = doyday_to_unix(TIME_YEAR_LOW(time_count_low), floor(DECIMAL_DAY_LOW(time_count_low)), $
@@ -168,7 +172,7 @@ pro mgs_to_sav, timeFrame = timeFrame
       endif
 
       ;Interpolate the low resolution altitude to the high resolution data.
-      RADIUS_OF_MARS = 3389.5
+      RADIUS_OF_MARS = 3389.5 ; km
       ALT_LOW = sqrt(SC_POSITION_X_LOW_SS^2+SC_POSITION_Y_LOW_SS^2+SC_POSITION_Z_LOW_SS^2)-RADIUS_OF_MARS
       if search_high ne '' then $
         ALT_HIGH = interpol(ALT_LOW, UNIX_TIME_LOW, UNIX_TIME_HIGH)
@@ -180,6 +184,4 @@ pro mgs_to_sav, timeFrame = timeFrame
 
     endfor
   endfor
-
-
 end
