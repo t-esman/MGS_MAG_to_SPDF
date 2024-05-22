@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+I don't think this is needed? Unconfirmed
 Created on Wed Feb 22 13:57:34 2023
 
 @author: tesman
@@ -18,7 +18,6 @@ mgs.data_low = mgs.data.drop(['altitude','decimal_day', 'b_range_hss',
                                  'bx_high_pl','by_high_pl','bz_high_pl','doy',
                                  'hour','minute','seconds','msec','year','unix_time_high',
                                  'time','magnitude'])
-
 
 mgs.data_high = mgs.data.drop(['altitude_low','day', 'decimal_day_low', 'dynamic_b_pl_range_low', 
                      'dynamic_bx_lpl', 'dynamic_by_lpl','dynamic_bz_lpl', 'static_b_pl_range_low', 
