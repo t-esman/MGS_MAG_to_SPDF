@@ -1,11 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
-;Load .sts detail file for MGS MAG low time resolution pc
+;Load .sts detail file for MGS MAG low time 
+; resolution planetocentric data
 ;No changes to the data are performed
 ;
 ;Code Dependency: stsread.pro
 ;
-;Author:
+;Author: Teresa (Tracy) Esman
 ; teresa.Esman@nasa.gov
 ; NASA Postdoctoral Fellow at NASA GSFC
 ;
@@ -30,7 +31,7 @@ pro tme_pc_low_sts_dataload,fnlpc,OUTBOARD_B_J2000_X_LOW_PC, $
 
   stsread,fnlpc,data,colNames,cmdLine,unitNames,titleLine
 
- TIME_YEAR_LOW_PC = reform(data[0,*])
+  TIME_YEAR_LOW_PC = reform(data[0,*])
   TIME_DOY_LOW_PC = reform(data[1,*])
   TIME_HOUR_LOW_PC = reform(data[2,*])
   TIME_MIN_LOW_PC = reform(data[3,*])
@@ -63,7 +64,5 @@ pro tme_pc_low_sts_dataload,fnlpc,OUTBOARD_B_J2000_X_LOW_PC, $
   cmdLine_LOW_PC = cmdLine
   unitNames_LOW_PC = unitNames
   titleLine_LOW_PC = titleLine
-
-
 
 end
