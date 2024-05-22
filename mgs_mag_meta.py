@@ -36,60 +36,40 @@ def scrub_MGS(data,return_datetime_for_header,time_resolution):
     # Rename data variables
     
     new_low_key_dict = {'alt_low':'altitude', 'decimal_day_low':'decimal_day',   'outboard_bd_payload_range_low_ss':'dynamic_b_pl_range',
-                        
-                     'outboard_bd_payload_x_low_ss':'dynamic_bx_lpl', 
-                     
-                     'outboard_bd_payload_y_low_ss':'dynamic_by_lpl','outboard_bd_payload_z_low_ss':'dynamic_bz_lpl', 'outboard_bsc_payload_range_low_ss':'static_b_pl_range', 
-                     
-                     'outboard_bsc_payload_x_low_ss':'static_bx_lpl', 'outboard_bsc_payload_y_low_ss':'static_by_lpl', 'outboard_bsc_payload_z_low_ss':'static_bz_lpl', 
-                     
-                     'outboard_b_j2000_range_low_pc':'b_range_lpc', 'outboard_b_j2000_range_low_ss':'b_range_lss', 'outboard_b_j2000_x_low_pc':'bx_lpc', 
-                     
-                     'outboard_b_j2000_x_low_ss':'bx_lss',  'outboard_b_j2000_y_low_pc':'by_lpc', 'outboard_b_j2000_y_low_ss':'by_lss', 'outboard_b_j2000_z_low_pc':'bz_lpc', 
-                     
-                     
-                     'outboard_b_j2000_z_low_ss':'bz_lss','outboard_rms_range_low_pc':'rms_range_lpc', 'outboard_rms_range_low_ss':'rms_range_lss', 
-                     
-                     'outboard_rms_x_low_pc':'rms_x_lpc',  'outboard_rms_x_low_ss':'rms_x_lss', 'outboard_rms_y_low_pc':'rms_y_lpc', 'outboard_rms_y_low_ss':'rms_y_lss', 
-                     
-                     'outboard_rms_z_low_pc':'rms_z_lpc','outboard_rms_z_low_ss':'rms_z_lss',  'sa_negy_current_low_ss':'sa_neg_y_low',  'sa_output_current_low_ss':'sa_total_low', 
-                     
-                     'sa_posy_current_low_ss':'sa_plus_y_low',  'sc_position_x_low_pc':'sc_pos_x_lpc', 'sc_position_x_low_ss':'sc_pos_x_lss', 'sc_position_y_low_pc':'sc_pos_y_lpc', 
-                     
-                     'sc_position_y_low_ss':'sc_pos_y_lss', 'sc_position_z_low_pc':'sc_pos_z_lpc', 
-                     
-                     
+                     'outboard_bd_payload_x_low_ss':'dynamic_bx_lpl',
+                     'outboard_bd_payload_y_low_ss':'dynamic_by_lpl','outboard_bd_payload_z_low_ss':'dynamic_bz_lpl',
+                     'outboard_bsc_payload_range_low_ss':'static_b_pl_range',
+                     'outboard_bsc_payload_x_low_ss':'static_bx_lpl', 'outboard_bsc_payload_y_low_ss':'static_by_lpl',
+                     'outboard_bsc_payload_z_low_ss':'static_bz_lpl',
+                     'outboard_b_j2000_range_low_pc':'b_range_lpc', 'outboard_b_j2000_range_low_ss':'b_range_lss', 'outboard_b_j2000_x_low_pc':'bx_lpc',
+                     'outboard_b_j2000_x_low_ss':'bx_lss',  'outboard_b_j2000_y_low_pc':'by_lpc',
+                     'outboard_b_j2000_y_low_ss':'by_lss', 'outboard_b_j2000_z_low_pc':'bz_lpc', 
+                     'outboard_b_j2000_z_low_ss':'bz_lss','outboard_rms_range_low_pc':'rms_range_lpc', 'outboard_rms_range_low_ss':'rms_range_lss',
+                     'outboard_rms_x_low_pc':'rms_x_lpc',  'outboard_rms_x_low_ss':'rms_x_lss', 
+                     'outboard_rms_y_low_pc':'rms_y_lpc', 'outboard_rms_y_low_ss':'rms_y_lss',
+                     'outboard_rms_z_low_pc':'rms_z_lpc','outboard_rms_z_low_ss':'rms_z_lss',  
+                     'sa_negy_current_low_ss':'sa_neg_y_low',  'sa_output_current_low_ss':'sa_total_low', 
+                     'sa_posy_current_low_ss':'sa_plus_y_low',  'sc_position_x_low_pc':'sc_pos_x_lpc', 
+                     'sc_position_x_low_ss':'sc_pos_x_lss', 'sc_position_y_low_pc':'sc_pos_y_lpc',
+                     'sc_position_y_low_ss':'sc_pos_y_lss', 'sc_position_z_low_pc':'sc_pos_z_lpc',
                      'sc_position_z_low_ss':'sc_pos_z_lss', 'time_doy_low':'doy', 'time_hour_low':'hour', 'time_min_low':'minute',
-                     
                      'time_msec_low':'msec',  'time_sec_low':'seconds', 'time_year_low':'year', 'unix_time_low':'unix_time'}   
     
-    MISSINGKERNEL_new_low_key_dict = {'alt_low':'altitude', 'decimal_day_low':'decimal_day',   'outboard_bd_payload_range_low_ss':'dynamic_b_pl_range',
-                        
-                     'outboard_bd_payload_x_low_ss':'dynamic_bx_lpl', 
-                     
-                     'outboard_bd_payload_y_low_ss':'dynamic_by_lpl','outboard_bd_payload_z_low_ss':'dynamic_bz_lpl', 'outboard_bsc_payload_range_low_ss':'static_b_pl_range', 
-                     
-                     'outboard_bsc_payload_x_low_ss':'static_bx_lpl', 'outboard_bsc_payload_y_low_ss':'static_by_lpl', 'outboard_bsc_payload_z_low_ss':'static_bz_lpl', 
-                     
+    MISSINGKERNEL_new_low_key_dict = {'alt_low':'altitude', 'decimal_day_low':'decimal_day',   'outboard_bd_payload_range_low_ss':'dynamic_b_pl_range', 
+                     'outboard_bd_payload_x_low_ss':'dynamic_bx_lpl',
+                     'outboard_bd_payload_y_low_ss':'dynamic_by_lpl','outboard_bd_payload_z_low_ss':'dynamic_bz_lpl', 
+                      'outboard_bsc_payload_range_low_ss':'static_b_pl_range',
+                     'outboard_bsc_payload_x_low_ss':'static_bx_lpl', 'outboard_bsc_payload_y_low_ss':'static_by_lpl', 
+                     'outboard_bsc_payload_z_low_ss':'static_bz_lpl',
                      'outboard_b_j2000_range_low_ss':'b_range_lss',
-                     
                      'outboard_b_j2000_x_low_ss':'bx_lss', 'outboard_b_j2000_y_low_ss':'by_lss',
-                     
-                     
-                     'outboard_b_j2000_z_low_ss':'bz_lss','outboard_rms_range_low_ss':'rms_range_lss', 
-                     
-                     'outboard_rms_x_low_ss':'rms_x_lss',  'outboard_rms_y_low_ss':'rms_y_lss', 
-                     
-                     'outboard_rms_z_low_ss':'rms_z_lss',  'sa_negy_current_low_ss':'sa_neg_y_low',  'sa_output_current_low_ss':'sa_total_low', 
-                     
-                     'sa_posy_current_low_ss':'sa_plus_y_low', 'sc_position_x_low_ss':'sc_pos_x_lss', 
-                     
+                     'outboard_b_j2000_z_low_ss':'bz_lss','outboard_rms_range_low_ss':'rms_range_lss',
+                     'outboard_rms_x_low_ss':'rms_x_lss',  'outboard_rms_y_low_ss':'rms_y_lss',
+                     'outboard_rms_z_low_ss':'rms_z_lss',  'sa_negy_current_low_ss':'sa_neg_y_low',  'sa_output_current_low_ss':'sa_total_low',
+                     'sa_posy_current_low_ss':'sa_plus_y_low', 'sc_position_x_low_ss':'sc_pos_x_lss',
                      'sc_position_y_low_ss':'sc_pos_y_lss',
-                     
-                     
                      'sc_position_z_low_ss':'sc_pos_z_lss', 'time_doy_low':'doy', 'time_hour_low':'hour', 'time_min_low':'minute',
-                     
-                     'time_msec_low':'msec',  'time_sec_low':'seconds', 'time_year_low':'year', 'unix_time_low':'unix_time'}   
+                     'time_msec_low':'msec',  'time_sec_low':'seconds', 'time_year_low':'year', 'unix_time_low':'unix_time'}
     
     new_high_key_dict = {'alt_high':'altitude','decimal_day_high':'decimal_day','outboard_b_j2000_range_high_pl_ss':'b_range_hss', 
                          'outboard_b_j2000_x_high_pl_ss':'bx_hss', 'outboard_b_j2000_y_high_pl_ss':'by_hss', 'outboard_b_j2000_z_high_pl_ss':'bz_hss',
@@ -97,7 +77,6 @@ def scrub_MGS(data,return_datetime_for_header,time_resolution):
                          'outboard_b_payload_y_high_pl_ss':'by_high_pl', 'outboard_b_payload_z_high_pl_ss':'bz_high_pl', 'time_doy_high':'doy',
                          'time_hour_high':'hour', 'time_min_high':'minute', 'time_msec_high':'msec', 'time_sec_high':'seconds',
                          'time_year_high_pl_ss':'year','unix_time_high':'unix_time'}       
-   
 
     if time_resolution == 'low':
         try:
@@ -109,13 +88,11 @@ def scrub_MGS(data,return_datetime_for_header,time_resolution):
         data = data.rename(new_high_key_dict)
         MAG = data['bx_hss'].values**2+data['by_hss'].values**2+data['bz_hss'].values**2
   
-
     return_datetime_for_header = data.time[0]
     data['magnitude'] = (('time'), MAG)
 
     return data, return_datetime_for_header
     
-
 def generate_header(inst_id, time,time_resolution):
     """Generate the meta header info.
     Parameters
@@ -129,61 +106,6 @@ def generate_header(inst_id, time,time_resolution):
     header : dict
         A dictionary compatible with the pysat.meta_header format.  Top-level
         metadata for the file.
-        
-        
-        
-        
-        
-        Global attributes are used to provide information about the data set as an entity. Together with variables and variable attributes, the global attributes make the data correctly and independently usable by someone not connected with the instrument team, and hence, a good archive product. The global attributes are also used by the CDAWeb Display and Retrieval system.
-
-The required Global Attributes are listed here with example values. Note that CDF attributes are case-sensitive and must exactly follow what is shown here. Additional Global attributes can be defined but they must start with a letter and can otherwise contain letters, numbers and the unscore character (no other special characters allowed). See Global Attribute Definitions for the full set of defined Global Attributes.
-
-     ATTRIBUTE                              EXAMPLE VALUE
---------------------------------------------------------------------
-
-     "Project"                     { "ISTP>International " - 
-                                     "Solar-Terrestrial Physics" }.
-     
-     This attribute identifies the name of the project and indicates ownership. 
-     For ISTP missions and investigations, the value used is "ISTP>International 
-     Solar-Terrestrial Physics". For the Cluster mission, the value is "STSP Cluster>Solar 
-     Terrestrial Science Programmes, Cluster". 
-     
-     
-     
-     "Source_name"                 { "GEOTAIL>Geomagnetic Tail" }.
-     
-     This attribute identifies the mission or investigation that contains the sensors. 
-     For ISTP, this is the mission name for spacecraft missions or the investigation name for 
-     ground-based or theory investigations. Both a long name and a short name are provided. 
-     This attribute should be single valued. 
-     
-     
-     "Discipline"                  { "Space Physics>Magnetospheric Science" }.
-     "Data_type"                   { "K0>Key Parameter" }.
-     "Descriptor"                  { "EPI>Energetic Particles" -
-                                     " and Ion Composition" }.
-     This attribute identifies the name of the instrument or sensor 
-     that collected the data
-     
-     "Data_version"                { "1" }.
-     "Logical_file_id"             { "GE_K0_EPI_19920908_V01" }.
-     "PI_name"                     { "D. Williams" }.
-     "PI_affiliation"              { "JHU/APL" }.
-     "TEXT"                        { "reference to journal article, URL address" }.
-    
-     This attribute is an NSSDC standard global attribute which is a 
-     text description of the experiment whose data is included in the CDF.
-     A reference to a journal article(s) or to a World Wide Web page describing 
-     the experiment is essential, and constitutes the minimum requirement. 
-     A written description of the data set is also desirable. This attribute 
-     can have as many entries as necessary to contain the desired information.
-     
-     "Instrument_type"             { "Magnetic Fields (space)" }.
-     "Mission_group"               { "Geotail" }.
-     "Logical_source"              { "GE_K0_EPI" }.
-     "Logical_source_description"  { "Geotail Magnetic Field Key Parameters" }.
-
 --------------------------------------------------------------------
     
     """
@@ -239,7 +161,6 @@ The required Global Attributes are listed here with example values. Note that CD
               'HTTP_LINK': 'https://pds-ppi.igpp.ucla.edu/search/?sc=Mars%20Global%20Surveyor&i=MAG'}
 
     return header
-
 
 def generate_metadata(header_data,time_resolution):
     """Generate metadata object for reach l1b data compatible with SPASE and pysat.
@@ -320,7 +241,6 @@ def generate_metadata(header_data,time_resolution):
                          meta.labels.desc: 'Magnetic Field Range',
                          meta.labels.min_val: -10,
                          meta.labels.max_val: 10}
-        
         
         meta['bx_hss'] = {meta.labels.name: 'Magnetic Field X MSO',
                             meta.labels.notes: 'High resolution in sun-state or MSO coordinates. Outboard.',
@@ -441,7 +361,6 @@ def generate_metadata(header_data,time_resolution):
                         meta.labels.min_val: 0.0,
                         meta.labels.max_val: 367.0,
                         meta.labels.desc: 'Decimal Day'}
-        
         
         meta['dynamic_b_pl_range'] = {meta.labels.name: 'Dynamic Range',
                         meta.labels.notes: ' '.join(('Gain range of the instrument at the time of',
