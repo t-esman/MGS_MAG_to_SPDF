@@ -77,7 +77,7 @@ for i in range(0, len(mgs.files.files)):
         month = add_str_zero(month)
             
         if time_resolution == 'high':
-            #mgs_m0_mag_low_19970914_v01
+            #Example file: mgs_m0_mag_low_19970914_v01
             save_file = '/Users/username/foldername/MGS/netcdf4/HIGHRES/MGS_MAG_high_{}'.format((''.join((str(year_convert),month,day,'_v01.nc4'))))
         else:
             save_file = '/Users/username/foldername//MGS/netcdf4/FULLWORD/MGS_MAG_low_{}'.format((''.join((str(year_convert),month,day,'_v01.nc4'))))
