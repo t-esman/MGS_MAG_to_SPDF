@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Provides metadata specific routines for MGS MAG data."""
+"""Provides metadata specific routines for MGS MAG data.
+author: Teresa (Tracy) Esman, teresa.esman@nasa.gov
+NASA Postdoctoral Fellow at NASA GSFC
+"""
 import datetime as dt
 import numpy as np
 import pysat
