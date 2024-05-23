@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
-;Load .sts detail file for MGS MAG low time 
-; resolution sun-state (MSO) data
+;Load .sts detail file for MGS MAG high time 
+; resolution sun-state (MSO) and payload data
 ;No changes to the data are performed
 ;
 ;Code Dependency: stsread.pro 
