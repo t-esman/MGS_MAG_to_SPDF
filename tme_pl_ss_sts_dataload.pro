@@ -1,17 +1,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Purpose:
-;Load .sts detail file for MGS MAG pl_ss
+;Load .sts detail file for MGS MAG low time 
+; resolution sun-state (MSO) data
 ;No changes to the data are performed
-; 
-;Code dependency: stsread.pro
 ;
-;Author:
+;Code Dependency: stsread.pro 
+;     (Written by: Monte Kaelberer)
+;     (Last Edited: 2014)
+;
+;Author: Teresa (Tracy) Esman
 ; teresa.Esman@nasa.gov
+; NASA Postdoctoral Fellow at NASA GSFC
 ;
-; Last edited: 05/15/2024 
+; Last edited: 05/23/2024
+; 05/15/2024
+; 11/9/2022
 ; 11/3/2022
 ; 7/18/2014
-; 
+;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 pro tme_pl_ss_sts_dataload,fnh,TIME_DOY_HIGH_PL_SS,TIME_HOUR_HIGH_PL_SS,TIME_MIN_HIGH_PL_SS,$
