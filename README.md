@@ -2,3 +2,4 @@ These are files used in the process of creating netCDF files of .sts Mars Global
 The IDL code focuses on bringing the .sts files to a .sav file with added altitude and time products. The Python code focuses on adding magnetic field magnitude and spacecraft position, while switching file format to netCDFs compatible with SPDF and Pysat. Meta is also added with this code.
 Coding and project advice was given by J. Klenzing, A. J. Halford, and J. Espley.
 Initial work was done as part of (and follow-up to) a 2014 summer internship at NASA GSFC. T. Esman then became a NASA Postdoctoral Fellow (ORAU) at NASA GSFC in 2022. 
+DOI: 10.5281/zenodo.11264417
