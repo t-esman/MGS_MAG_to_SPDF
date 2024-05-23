@@ -4,13 +4,15 @@
 ; resolution planetocentric data
 ;No changes to the data are performed
 ;
-;Code Dependency: stsread.pro
+;Code Dependency: stsread.pro 
+;     (Written by: Monte Kaelberer)
+;     (Last Edited: 2014)
 ;
 ;Author: Teresa (Tracy) Esman
 ; teresa.Esman@nasa.gov
 ; NASA Postdoctoral Fellow at NASA GSFC
 ;
-; Last edited: 
+; Last edited: 05/23/2024
 ; 05/15/2024
 ; 11/9/2022
 ; 11/3/2022
