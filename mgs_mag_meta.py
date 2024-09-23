@@ -86,10 +86,10 @@ def scrub_MGS(data,return_datetime_for_header,time_resolution):
             data = data.rename(new_low_key_dict)
         except:
             data = data.rename(MISSINGKERNEL_new_low_key_dict)
-        MAG = data['bx_lss'].values**2+data['by_lss'].values**2+data['bz_lss'].values**2
+        MAG = np.sqrt(data['bx_lss'].values**2+data['by_lss'].values**2+data['bz_lss'].values**2)
     else:
         data = data.rename(new_high_key_dict)
-        MAG = data['bx_hss'].values**2+data['by_hss'].values**2+data['bz_hss'].values**2
+        MAG = np.sqrt(data['bx_hss'].values**2+data['by_hss'].values**2+data['bz_hss'].values**2)
   
     return_datetime_for_header = data.time[0]
     data['magnitude'] = (('time'), MAG)
